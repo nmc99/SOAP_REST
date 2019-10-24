@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://servicios" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://servicios" xmlns:intf="http://servicios" xmlns:tns1="http://modelo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://servicios" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://modelo"/>
+   <element name="getPersona">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPersonaResponse">
+    <complexType>
+     <sequence>
+      <element name="getPersonaReturn" type="tns1:Persona"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="borrarPersona">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="borrarPersonaResponse">
+    <complexType>
+     <sequence>
+      <element name="borrarPersonaReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllPersonas">
+    <complexType/>
+   </element>
+   <element name="getAllPersonasResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getAllPersonasReturn" type="tns1:Persona"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addPersona">
+    <complexType>
+     <sequence>
+      <element name="p" type="tns1:Persona"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addPersonaResponse">
+    <complexType>
+     <sequence>
+      <element name="addPersonaReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://modelo" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Persona">
+    <sequence>
+     <element name="edad" type="xsd:int"/>
+     <element name="id" type="xsd:int"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="borrarPersonaResponse">
+
+      <wsdl:part element="impl:borrarPersonaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllPersonasRequest">
+
+      <wsdl:part element="impl:getAllPersonas" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="borrarPersonaRequest">
+
+      <wsdl:part element="impl:borrarPersona" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPersonaRequest">
+
+      <wsdl:part element="impl:getPersona" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllPersonasResponse">
+
+      <wsdl:part element="impl:getAllPersonasResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addPersonaRequest">
+
+      <wsdl:part element="impl:addPersona" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPersonaResponse">
+
+      <wsdl:part element="impl:getPersonaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addPersonaResponse">
+
+      <wsdl:part element="impl:addPersonaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ServicioPersonaImpl">
+
+      <wsdl:operation name="getPersona">
+
+         <wsdl:input message="impl:getPersonaRequest" name="getPersonaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPersonaResponse" name="getPersonaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="borrarPersona">
+
+         <wsdl:input message="impl:borrarPersonaRequest" name="borrarPersonaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:borrarPersonaResponse" name="borrarPersonaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllPersonas">
+
+         <wsdl:input message="impl:getAllPersonasRequest" name="getAllPersonasRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllPersonasResponse" name="getAllPersonasResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPersona">
+
+         <wsdl:input message="impl:addPersonaRequest" name="addPersonaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addPersonaResponse" name="addPersonaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServicioPersonaImplSoapBinding" type="impl:ServicioPersonaImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getPersona">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPersonaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPersonaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="borrarPersona">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="borrarPersonaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="borrarPersonaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllPersonas">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllPersonasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllPersonasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPersona">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addPersonaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addPersonaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServicioPersonaImplService">
+
+      <wsdl:port binding="impl:ServicioPersonaImplSoapBinding" name="ServicioPersonaImpl">
+
+         <wsdlsoap:address location="http://localhost:8080/SOAP_Prueba/services/ServicioPersonaImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

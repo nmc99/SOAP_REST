@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServicioPersonaImplService WSDL service -->
+
+  <service name="ServicioPersonaImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://servicios"/>
+      <parameter name="wsdlServiceElement" value="ServicioPersonaImplService"/>
+      <parameter name="schemaQualified" value="http://modelo,http://servicios"/>
+      <parameter name="wsdlServicePort" value="ServicioPersonaImpl"/>
+      <parameter name="className" value="servicios.ServicioPersonaImplSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ServicioPersonaImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getPersona" qname="operNS:getPersona" xmlns:operNS="http://servicios" returnQName="retNS:getPersonaReturn" xmlns:retNS="http://servicios" returnType="rtns:Persona" xmlns:rtns="http://modelo" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://servicios" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="borrarPersona" qname="operNS:borrarPersona" xmlns:operNS="http://servicios" returnQName="retNS:borrarPersonaReturn" xmlns:retNS="http://servicios" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://servicios" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAllPersonas" qname="operNS:getAllPersonas" xmlns:operNS="http://servicios" returnQName="retNS:getAllPersonasReturn" xmlns:retNS="http://servicios" returnType="rtns:Persona" xmlns:rtns="http://modelo" soapAction="" >
+      </operation>
+      <operation name="addPersona" qname="operNS:addPersona" xmlns:operNS="http://servicios" returnQName="retNS:addPersonaReturn" xmlns:retNS="http://servicios" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:p" xmlns:pns="http://servicios" type="tns:Persona" xmlns:tns="http://modelo"/>
+      </operation>
+      <parameter name="allowedMethods" value="addPersona borrarPersona getPersona getAllPersonas"/>
+
+      <typeMapping
+        xmlns:ns="http://modelo"
+        qname="ns:Persona"
+        type="java:modelo.Persona"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
